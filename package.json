@@ -19,7 +19,9 @@
     "build": "npm run build:spec && tsc"
   },
   "dependencies": {
-    "@tsoa/runtime": "^3.13.0"
+    "@tsoa/runtime": "^3.13.0",
+    "express": "^4.17.3",
+    "express-query-auto-parse": "^3.0.1"
   },
   "devDependencies": {
     "@tsoa/cli": "^3.14.1",
