@@ -16,7 +16,8 @@
   "homepage": "https://github.com/Barmanjoke/Rosa-Back-Central#readme",
   "scripts": {
     "build:spec": "cd ./src/api && tsoa swagger && tsoa routes",
-    "build": "npm run build:spec && tsc"
+    "build": "npm run build:spec && tsc",
+    "start": "cross-env NODE_PATH=./build/ node build/server.js"
   },
   "dependencies": {
     "@tsoa/runtime": "^3.13.0",
@@ -35,6 +36,7 @@
     "@types/js-yaml": "^4.0.5",
     "@types/node": "^17.0.23",
     "@types/pg": "^8.6.5",
+    "cross-env": "^7.0.3",
     "typescript": "^4.6.2"
   }
 }
