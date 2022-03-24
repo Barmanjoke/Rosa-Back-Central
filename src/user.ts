@@ -9,6 +9,7 @@ export interface User {
     id: UUID;
     created_on: Date;
     delete_on?: Date;
+    name: string;
     //TODO profile
 }
 
