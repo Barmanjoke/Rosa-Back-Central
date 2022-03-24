@@ -1,0 +1,22 @@
+{
+    "spec": {
+        "host": "api.rosaparks.app",
+        "basePath": "/backend-central",
+        "name": "Rosa Backend Central",
+        "version": "0.0.1",
+        "specVersion": 3,
+        "outputDirectory": "./../../build",
+        "specFileBaseName": "apispec",
+        "yaml": true
+    },
+    "routes": {
+        "basePath": "/backend-central",
+        "routesDir": "./routes",
+        "middleware": "express"
+    },
+    "entryFile": "./controllers/main.ts",
+    "noImplicitAdditionalProperties": "throw-on-extras",
+    "compilerOptions": {
+        "baseUrl": "./.."
+    }
+}

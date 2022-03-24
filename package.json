@@ -14,7 +14,15 @@
     "url": "https://github.com/Barmanjoke/Rosa-Back-Central/issues"
   },
   "homepage": "https://github.com/Barmanjoke/Rosa-Back-Central#readme",
+  "scripts": {
+    "build:spec": "cd ./src/api && tsoa swagger && tsoa routes",
+    "build": "npm run build:spec && tsc"
+  },
   "dependencies": {
+    "@tsoa/runtime": "^3.13.0"
+  },
+  "devDependencies": {
+    "@tsoa/cli": "^3.14.1",
     "typescript": "^4.6.2"
   }
 }
