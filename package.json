@@ -28,7 +28,8 @@
     "loglevel": "^1.8.0",
     "loglevel-plugin-prefix": "^0.8.4",
     "pg": "^8.7.3",
-    "qs": "^6.10.3"
+    "qs": "^6.10.3",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@tsoa/cli": "^3.14.1",
