@@ -5,5 +5,5 @@ import { UUID } from "primitives";
  */
 export interface Subscription {
     user_id: UUID;
-    assoc_id: UUIDD;
+    assoc_id: UUID;
 }
