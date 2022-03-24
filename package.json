@@ -21,7 +21,9 @@
   "dependencies": {
     "@tsoa/runtime": "^3.13.0",
     "express": "^4.17.3",
-    "express-query-auto-parse": "^3.0.1"
+    "express-query-auto-parse": "^3.0.1",
+    "loglevel": "^1.8.0",
+    "loglevel-plugin-prefix": "^0.8.4"
   },
   "devDependencies": {
     "@tsoa/cli": "^3.14.1",
