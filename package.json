@@ -1,0 +1,20 @@
+{
+  "name": "rosa-back-central",
+  "version": "0.0.1",
+  "description": "Rosa project - central backend",
+  "main": "index.js",
+  "private": "true",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Barmanjoke/Rosa-Back-Central.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Barmanjoke/Rosa-Back-Central/issues"
+  },
+  "homepage": "https://github.com/Barmanjoke/Rosa-Back-Central#readme",
+  "dependencies": {
+    "typescript": "^4.6.2"
+  }
+}
