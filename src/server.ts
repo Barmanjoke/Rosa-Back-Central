@@ -8,15 +8,21 @@ prefix.apply(log, {
 	nameFormatter: (name) => name ?? "-",
 	timestampFormatter: (date) => date.toISOString(),
 });
-log.info("Rosa Back Central starting up!");
+log.info("Rosa Back Central starting up...");
 
-import settings from "settings";
 start().catch(err => {
 	log.error("Error on server start:\n%s", err);
 	process.exitCode = 1;
 });
 
 async function start(){
+    const settings = (await import('settings')).default();
+    if(!settings) throw new Error("Failed to load or find settings! >(");
+    const db = (await import('db')).default(settings);
+    await db.connect();
+    log.info(await db.query("select count (*) from events"));
+    log.info("Connected to the database...");
+
 	const express = (await import('express')).default;
 	const bodyParser = await import('body-parser');
 	const qBoolParser = require('express-query-auto-parse');
@@ -41,4 +47,6 @@ async function start(){
 		});
 		httpServer.on("error", f);
 	});
+
+    log.info("API Ready to roll!");
 }
