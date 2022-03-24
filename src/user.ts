@@ -25,7 +25,7 @@ export async function getUser(db: Database, id: UUID): Promise<User> {
 }
 
 export async function deleteUser(db: Database, id: UUID): Promise<void> {
-    await db.query(`delete * from users where id = $1`, [id]);
+    await db.query(`delete from users where id = $1`, [id]);
 }
 
 export async function createUser(db: Database, crea: UserCreate): Promise<UUID> {
