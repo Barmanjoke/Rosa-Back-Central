@@ -20,7 +20,6 @@ async function start(){
     if(!settings) throw new Error("Failed to load or find settings! >(");
     const db = (await import('db')).default(settings);
     await db.connect();
-    log.info(await db.query("select count (*) from events"));
     log.info("Connected to the database...");
 
 	const express = (await import('express')).default;
