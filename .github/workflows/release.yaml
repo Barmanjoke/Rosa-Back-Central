@@ -1,0 +1,25 @@
+name: Release to GHCR
+on:
+  push:
+    tags:
+      - '*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Where are we?
+      id: vars
+      run: |
+        echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+        echo ::set-output name=repo::$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')
+    - name: Log-in
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GHCR_TOKEN }}
+    - name: Dockerize
+      run: docker build -t ghcr.io/${{ steps.vars.outputs.repo }}:${{ steps.vars.outputs.tag }} .
+    - name: Publish Container
+      run: docker push ghcr.io/${{ steps.vars.outputs.repo }}:${{ steps.vars.outputs.tag }}
