@@ -20,11 +20,13 @@
   },
   "dependencies": {
     "@tsoa/runtime": "^3.13.0",
+    "body-parser": "^1.19.2",
     "express": "^4.17.3",
     "express-query-auto-parse": "^3.0.1",
     "js-yaml": "^4.1.0",
     "loglevel": "^1.8.0",
-    "loglevel-plugin-prefix": "^0.8.4"
+    "loglevel-plugin-prefix": "^0.8.4",
+    "qs": "^6.10.3"
   },
   "devDependencies": {
     "@tsoa/cli": "^3.14.1",
