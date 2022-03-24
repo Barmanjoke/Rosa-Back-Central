@@ -34,6 +34,10 @@ async function start(){
 	app.set('query parser', function(str: string){
 		return qs.parse(str, {arrayLimit: 100});
 	});
+	app.use((req, res, next) => {
+		req.db = db;
+		next();
+	});
 	app.use(bodyParser.json());
 	app.use(qBoolParser());
 	RegisterRoutes(app);

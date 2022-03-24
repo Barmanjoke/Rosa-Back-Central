@@ -3,6 +3,14 @@ import { Pool } from 'pg';
 
 export type Database = Pool;
 
+declare global {
+    namespace Express {
+        interface Request {
+            db: Database
+        }
+    }
+}
+
 export default ((settings: Settings) => new Pool({
     max: 20,
     ssl: true,
