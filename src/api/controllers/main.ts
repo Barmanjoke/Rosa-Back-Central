@@ -1,18 +1,26 @@
-import { Body, Controller, Get, Post, Query, Route, Security, Request, Tags } from '@tsoa/runtime';
+import { Body, Controller, Get, Post, Delete, Query, Route, Security, Request, Tags } from '@tsoa/runtime';
+import { Database } from 'db';
 import * as express from 'express';
+import { UUID } from 'primitives';
+import { createUser, deleteUser, getUser, User, UserCreate } from 'user';
 
 @Tags('👤 User')
 @Route('/user')
 export class UserController extends Controller {
-	
+
 	@Get('{userId}')
 	public async getUser(userId: UUID, @Request() rq: express.Request): Promise<User> {
-		//TODO
+		return await getUser(rq.db, userId);
 	}
+
+    @Delete('{userId}')
+    public async deleteUser(userId: UUID, @Request() rq: express.Request): Promise<void> {
+        return await deleteUser(rq.db, userId);
+    }
 	
 	@Post('register')
-	public async registerUser(@Body() params: UserCreate): Promise<User> {
-		//TODO
+	public async registerUser(@Body() params: UserCreate, @Request() rq: express.Request): Promise<UUID> {
+		return await createUser(rq.db, params);
 	}
 
 }
