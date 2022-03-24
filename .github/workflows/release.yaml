@@ -1,10 +1,27 @@
-name: Release to GHCR
+name: Release
 on:
   push:
     tags:
       - '*'
 jobs:
-  build:
+  release-spec:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Where are we?
+      id: vars
+      run: |
+        echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+        echo ::set-output name=repo::$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')
+    - name: Install
+      run: npm ci
+    - name: Build
+      run: npm run build
+    - name: Release spec to GitHub Releases
+      uses: softprops/action-gh-release@v1
+      with:
+        files: build/apispec.yaml
+  release-ghcr:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
