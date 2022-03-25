@@ -2,6 +2,7 @@ import { Body, Controller, Get, Post, Delete, Query, Route, Security, Request, T
 import { Database } from 'db';
 import * as express from 'express';
 import { UUID } from 'primitives';
+import { addSubscription, removeSubscription } from 'subscription';
 import { createUser, deleteUser, getUser, User, UserCreate } from 'user';
 
 @Tags('👤 User')
@@ -30,13 +31,13 @@ export class UserController extends Controller {
 export class SubscriptiosController extends Controller {
 
 	@Post('{userId}/{assocId}')
-	public async addSubscription(userId: UUID, assocId: UUID): Promise<void> {
-		//TODO
+	public async addSubscription(userId: UUID, assocId: UUID, @Request() rq: express.Request): Promise<void> {
+		return await addSubscription(rq.db, userId, assocId);
 	}
 
 	@Delete('{userId}/{assocId}')
-	public async removeSubscription(userId: UUID, assocId: UUID): Promise<void> {
-		//TODO
+	public async removeSubscription(userId: UUID, assocId: UUID, @Request() rq: express.Request): Promise<void> {
+		return await removeSubscription(rq.db, userId, assocId);
 	}
 
 }
