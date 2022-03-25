@@ -3,7 +3,7 @@
         "host": "api.rosaparks.app",
         "basePath": "/backend-central",
         "name": "Rosa Backend Central",
-        "version": "0.0.1",
+        "version": "0.1.0",
         "specVersion": 3,
         "outputDirectory": "./../../build",
         "specFileBaseName": "apispec",

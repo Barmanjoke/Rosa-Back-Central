@@ -9,15 +9,19 @@ export interface User {
     id: UUID;
     created_on: Date;
     delete_on?: Date;
-    name: string;
-    //TODO profile
+    first_name: string;
+    last_name: string;
+    utype: 'individual',
+    profile_pic: string;
 }
 
 /**
  * User creation data
  */
 export interface UserCreate {
-    name: string;
+    first_name: string;
+    last_name: string;
+    profile_pic: string;
     temporary?: boolean;
 }
 
@@ -32,7 +36,7 @@ export async function deleteUser(db: Database, id: UUID): Promise<void> {
 export async function createUser(db: Database, crea: UserCreate): Promise<UUID> {
     const uid = uuidv4();
     const now = new Date();
-    await db.query(`INSERT INTO users (id, created_on, delete_on, name) VALUES ($1, $2, $3, $4)`, [uid, now, crea.temporary ? new Date(now.getFullYear(), now.getMonth(), now.getDay() + 60) : null, crea.name]);
+    await db.query(`INSERT INTO users (id, created_on, delete_on, first_name, last_name, utype, profile_pic) VALUES ($1, $2, $3, $4, $5, $6, $7)`, [uid, now, crea.temporary ? new Date(now.getFullYear(), now.getMonth(), now.getDay() + 60) : null, crea.first_name, crea.last_name, 'individual', crea.profile_pic]);
     return uid;
 }
 
