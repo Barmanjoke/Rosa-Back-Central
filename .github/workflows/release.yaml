@@ -51,3 +51,4 @@ jobs:
         dns-name-label: rosa-central-back
         image: ghcr.io/${{ steps.vars.outputs.repo }}:${{ steps.vars.outputs.tag }}
         location: 'west europe'
+        restart-policy: OnFailure
