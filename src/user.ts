@@ -9,6 +9,7 @@ export interface User {
     id: UUID;
     created_on: Date;
     delete_on?: Date;
+    email: string;
     first_name: string;
     last_name: string;
     utype: 'individual',
@@ -19,6 +20,7 @@ export interface User {
  * User creation data
  */
 export interface UserCreate {
+    email: string;
     first_name: string;
     last_name: string;
     profile_pic: string;
@@ -36,8 +38,12 @@ export async function deleteUser(db: Database, id: UUID): Promise<void> {
 export async function createUser(db: Database, crea: UserCreate): Promise<UUID> {
     const uid = uuidv4();
     const now = new Date();
-    await db.query(`INSERT INTO users (id, created_on, delete_on, first_name, last_name, utype, profile_pic) VALUES ($1, $2, $3, $4, $5, $6, $7)`, [uid, now, crea.temporary ? new Date(now.getFullYear(), now.getMonth(), now.getDay() + 60) : null, crea.first_name, crea.last_name, 'individual', crea.profile_pic]);
+    await db.query(`INSERT INTO users (id, created_on, delete_on, email, first_name, last_name, utype, profile_pic) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`, [uid, now, crea.temporary ? new Date(now.getFullYear(), now.getMonth(), now.getDay() + 60) : null, crea.email, crea.first_name, crea.last_name, 'individual', crea.profile_pic]);
     return uid;
+}
+
+export async function logInUser(db: Database, email: string): Promise<User> {
+    return (await db.query(`select * from users where email = $1`, [email])).rows[0];
 }
 
 /**

@@ -5,7 +5,7 @@ import * as express from 'express';
 import { UUID } from 'primitives';
 import { addSubscription, removeSubscription } from 'subscription';
 import { createSZS, getSafeMessage, getSafeMessages, postSafeMessage, SafeMessage } from 'szs';
-import { createUser, deleteUser, getUser, User, UserCreate } from 'user';
+import { createUser, deleteUser, getUser, logInUser, User, UserCreate } from 'user';
 
 @Tags('👤 User')
 @Route('/user')
@@ -38,6 +38,16 @@ export class UserController extends Controller {
 	@Post('register')
 	public async registerUser(@Body() params: UserCreate, @Request() rq: express.Request): Promise<UUID> {
 		return await createUser(rq.db, params);
+	}
+
+    /**
+     * Loggs into the system
+     * @param params credentials
+     * @returns user logged in uid
+     */
+	@Post('login')
+	public async logInUser(@Body() params: { email: string, password: string }, @Request() rq: express.Request): Promise<User> {
+		return await logInUser(rq.db, params.email);
 	}
 
 }
