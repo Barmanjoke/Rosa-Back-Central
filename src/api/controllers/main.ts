@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Post, Delete, Query, Route, Security, Request, Tags } from '@tsoa/runtime';
+import { Company, CompanyCreate, createCompany, getCompany } from 'company';
 import { Database } from 'db';
 import * as express from 'express';
 import { UUID } from 'primitives';
@@ -114,5 +115,31 @@ export class SZSController extends Controller {
     public async postSafeMessage(szsId: UUID, userId: UUID, @Body() params: { content: string }, @Request() rq: express.Request): Promise<UUID> {
         return await postSafeMessage(rq.db, szsId, userId, params.content);
     }
+
+}
+
+@Tags('🏢 Companies')
+@Route('/company')
+export class CompanyController extends Controller {
+
+    /**
+     * Get company by id
+     * @param companyId company id
+     * @returns company
+     */
+	@Get('{companyId}')
+	public async getCompany(companyId: UUID, @Request() rq: express.Request): Promise<Company> {
+		return await getCompany(rq.db, companyId);
+	}
+
+    /**
+     * Create a new company
+     * @param params initial company settings
+     * @returns new company id
+     */
+	@Post('register')
+	public async registerCompany(@Body() params: CompanyCreate, @Request() rq: express.Request): Promise<UUID> {
+		return await createCompany(rq.db, params);
+	}
 
 }
