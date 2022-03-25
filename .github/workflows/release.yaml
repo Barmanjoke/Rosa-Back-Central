@@ -40,6 +40,9 @@ jobs:
       run: docker build -t ghcr.io/${{ steps.vars.outputs.repo }}:${{ steps.vars.outputs.tag }} .
     - name: Publish Container
       run: docker push ghcr.io/${{ steps.vars.outputs.repo }}:${{ steps.vars.outputs.tag }}
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
     - name: Deploy to Azure
       uses: 'azure/aci-deploy@v1'
       with:
