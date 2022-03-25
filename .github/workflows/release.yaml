@@ -57,8 +57,10 @@ jobs:
       uses: 'azure/aci-deploy@v1'
       with:
         name: rosa-back-central
-        resource-group: rosa
+        resource-group: ${{ secrets.RESOURCE_GROUP }}
         dns-name-label: rosa-central-back
         image: ghcr.io/${{ steps.vars.outputs.repo }}:${{ steps.vars.outputs.tag }}
         location: 'west europe'
         restart-policy: OnFailure
+        registry-username: ${{ secrets.REGISTRY_USERNAME }}
+        registry-password: ${{ secrets.REGISTRY_PASSWORD }}
