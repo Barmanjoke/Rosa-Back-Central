@@ -17,7 +17,6 @@ start().catch(err => {
 
 async function start(){
     const settings = (await import('settings')).default();
-    if(!settings) throw new Error("Failed to load or find settings! >(");
     const db = (await import('db')).default(settings);
     await db.connect();
     log.info("Connected to the database...");
