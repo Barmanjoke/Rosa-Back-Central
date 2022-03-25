@@ -22,12 +22,14 @@ async function start(){
     log.info("Connected to the database...");
 
 	const express = (await import('express')).default;
+	const cors = (await import('cors')).default;
 	const bodyParser = await import('body-parser');
 	const qBoolParser = require('express-query-auto-parse');
 	const http = await import('http');
 	const RegisterRoutes = (await import('./api/routes/routes')).RegisterRoutes;
 
 	const app = express();
+	app.use(cors());
 	const qs = (await import('qs')).default;
 	app.set('query parser', function(str: string){
 		return qs.parse(str, {arrayLimit: 100});

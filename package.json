@@ -1,6 +1,6 @@
 {
   "name": "rosa-back-central",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Rosa project - central backend",
   "main": "server.js",
   "private": "true",
@@ -22,6 +22,7 @@
   "dependencies": {
     "@tsoa/runtime": "^3.13.0",
     "body-parser": "^1.19.2",
+    "cors": "^2.8.5",
     "express": "^4.17.3",
     "express-query-auto-parse": "^3.0.1",
     "js-yaml": "^4.1.0",
@@ -33,6 +34,7 @@
   },
   "devDependencies": {
     "@tsoa/cli": "^3.14.1",
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/js-yaml": "^4.0.5",
     "@types/node": "^17.0.23",
