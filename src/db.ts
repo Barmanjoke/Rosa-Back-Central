@@ -15,5 +15,6 @@ export default ((settings: Settings) => new Pool({
     max: 20,
     ssl: true,
     idleTimeoutMillis: 30000,
+    ...{ connectionString: process.env.DB_URL },
     ...settings.db,
 }));

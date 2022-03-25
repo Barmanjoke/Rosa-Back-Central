@@ -67,4 +67,4 @@ jobs:
         registry-username: ${{ secrets.REGISTRY_USERNAME }}
         registry-password: ${{ secrets.REGISTRY_PASSWORD }}
         environment-variables:
-          SETTINGS: ${{secrets.AZ_SETTINGS}}
+          DB_URL: ${{secrets.AZ_DB_URL}}
