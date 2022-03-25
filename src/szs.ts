@@ -27,9 +27,19 @@ export async function createSZS(db: Database, user: UUID, assistant: UUID): Prom
 }
 
 /**
+ * Get safe zones for a user
+ * @param db database
+ * @param user user id
+ * @returns safe zones
+ */
+export async function getSafeZonesForUser(db: Database, user: UUID): Promise<SZS[]> {
+    return (await db.query(`select * from safe_zones where user_id = $1`, [user])).rows;
+}
+
+/**
  * Safe zone message
  */
- export interface SafeMessage {
+export interface SafeMessage {
     id: UUID;
     szs_id: UUID;
     by_id: UUID;

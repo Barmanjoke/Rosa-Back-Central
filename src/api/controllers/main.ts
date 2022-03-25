@@ -4,7 +4,7 @@ import { Database } from 'db';
 import * as express from 'express';
 import { UUID } from 'primitives';
 import { addSubscription, removeSubscription } from 'subscription';
-import { createSZS, getSafeMessage, getSafeMessages, postSafeMessage, SafeMessage } from 'szs';
+import { createSZS, getSafeMessage, getSafeMessages, getSafeZonesForUser, postSafeMessage, SafeMessage, SZS } from 'szs';
 import { createUser, deleteUser, getUser, logInUser, User, UserCreate } from 'user';
 
 @Tags('👤 User')
@@ -81,6 +81,16 @@ export class SubscriptionsController extends Controller {
 @Tags('👁 Safe Zones')
 @Route('/szs')
 export class SZSController extends Controller {
+
+    /**
+     * Get safe zones for a user
+     * @param userId user id
+     * @returns safe zones
+     */
+	@Get('{userId}')
+    public async getSafeZonesForUser(userId: UUID, @Request() rq: express.Request): Promise<SZS[]> {
+        return await getSafeZonesForUser(rq.db, userId);
+    }
 
     /**
      * Create a new safe zone
