@@ -44,6 +44,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: release-ghcr
     steps:
+    - uses: actions/checkout@v2
+    - name: Where are we?
+      id: vars
+      run: |
+        echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+        echo ::set-output name=repo::$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
