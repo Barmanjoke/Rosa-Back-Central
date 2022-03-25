@@ -58,7 +58,7 @@ jobs:
       with:
         name: rosa-back-central
         resource-group: ${{ secrets.RESOURCE_GROUP }}
-        dns-name-label: rosa-central-back
+        dns-name-label: rosa-back-central
         image: ghcr.io/${{ steps.vars.outputs.repo }}:${{ steps.vars.outputs.tag }}
         location: 'west europe'
         restart-policy: OnFailure
@@ -66,4 +66,4 @@ jobs:
         registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
         registry-username: ${{ secrets.REGISTRY_USERNAME }}
         registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-        environment-variables: DB_URL="${{secrets.AZ_DB_URL}}"
+        secure-environment-variables: DB_URL="${{secrets.AZ_DB_URL}}"
