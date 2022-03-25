@@ -62,6 +62,7 @@ jobs:
         image: ghcr.io/${{ steps.vars.outputs.repo }}:${{ steps.vars.outputs.tag }}
         location: 'west europe'
         restart-policy: OnFailure
+        ports: [80, 3060]
         registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
         registry-username: ${{ secrets.REGISTRY_USERNAME }}
         registry-password: ${{ secrets.REGISTRY_PASSWORD }}
