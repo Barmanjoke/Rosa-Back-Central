@@ -1,4 +1,5 @@
 export interface Settings {
+	port?: number;
 	db: {
 		connectionString?: string;
 		host?: string;

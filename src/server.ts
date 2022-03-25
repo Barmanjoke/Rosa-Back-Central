@@ -41,7 +41,7 @@ async function start(){
 	app.use(qBoolParser());
 	RegisterRoutes(app);
 
-	const port = 3060;
+	const port = settings.port ?? 3060;
 
 	await new Promise<void>((s, f) => {
 		const httpServer = http.createServer(app).listen(port, function(){
