@@ -18,5 +18,5 @@ COPY package*.json ./
 RUN npm ci
 # Bring the build artifacts
 COPY --from=builder /app/build /app
-ENV NODE_ENV=/app
+ENV NODE_PATH=/app
 CMD ["node", "server.js"]
